@@ -673,8 +673,8 @@ public class LibRec {
 			return new FST(trainMatrix,testMatrix,fold);
 		case "fsti":
 			return new FSTI(trainMatrix,testMatrix,fold);
-		case "fstip":
-			return new FSTIP(trainMatrix, testMatrix, fold);
+		case "fstid":
+			return new FSTID(trainMatrix, testMatrix, fold);
 		case "userknn":
 			return new UserKNN(trainMatrix, testMatrix, fold);
 		case "itemknn":

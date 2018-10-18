@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * FSTIP: 结合信任出入度及影响力
+ * FSTID: 结合信任出入度及影响力
  *
  */
 @Configuration("binThold, rho, alpha, p, factors, lRate, maxLRate, regU, regI, regB, iters")
-public class FSTIP extends SocialRecommender {
+public class FSTID extends SocialRecommender {
     /**
      * P、Q-用户的特征矩阵（一般P指用户v，q指用户u）
      * X、Y-项目的特征矩阵（一般X指项目j，Y指项目i）
@@ -42,7 +42,7 @@ public class FSTIP extends SocialRecommender {
     private List<Integer> powerUsers = new ArrayList<>();
 
 
-    public FSTIP(SparseMatrix trainMatrix, SparseMatrix testMatrix, int fold) {
+    public FSTID(SparseMatrix trainMatrix, SparseMatrix testMatrix, int fold) {
         super(trainMatrix, testMatrix, fold);
 
         isRankingPred = true;
@@ -70,7 +70,7 @@ public class FSTIP extends SocialRecommender {
 
         getPowerUser();
 
-        algoOptions = cf.getParamOptions("FSTIP");
+        algoOptions = cf.getParamOptions("FSTID");
         rho = algoOptions.getInt("-rho");
         alpha = algoOptions.getFloat("-alpha");
         beta = algoOptions.getFloat("-beta");
@@ -449,9 +449,9 @@ public class FSTIP extends SocialRecommender {
     public void getFacMatrix(int type) throws Exception {
         String pathname ;
         if(type == 0)
-            pathname = cf.getPath("dataset.fstip.user_feature");
+            pathname = cf.getPath("dataset.fstid.user_feature");
         else
-            pathname = cf.getPath("dataset.fstip.item_feature");
+            pathname = cf.getPath("dataset.fstid.item_feature");
 
         File filename = new File(pathname); // 要读取以上路径的input。txt文件
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filename),"UTF-8"); // 建立一个输入流对象reader
@@ -476,7 +476,7 @@ public class FSTIP extends SocialRecommender {
     }
 
     public void getPowerUser() throws Exception {
-        File filename = new File(cf.getPath("dataset.fstip.power")); // 要读取以上路径的input。txt文件
+        File filename = new File(cf.getPath("dataset.fstid.power")); // 要读取以上路径的input。txt文件
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filename),"UTF-8"); // 建立一个输入流对象reader
         BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
         String line = "";
